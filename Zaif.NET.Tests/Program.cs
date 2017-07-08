@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -11,92 +12,13 @@ using ZaifNet;
 
 namespace ZaifNET.Tests
 {
-    # region HttpListener based server
-    class Server
-    {
-        public async void Start(string listenerPrefix)
-        {
-            // Start up the HttpListener on the passes Uri. 
-            HttpListener listener = new HttpListener();
-            listener.Prefixes.Add(listenerPrefix);
-            listener.Start();
-            Console.WriteLine("Listening...");
-
-            while (true)
-            {
-                // Accept the HttpListenerContext
-                HttpListenerContext listenerContext = await listener.GetContextAsync();
-
-                // Check if this is for a websocket request
-                if (listenerContext.Request.IsWebSocketRequest)
-                {
-                    ProcessRequest(listenerContext);
-                }
-                else
-                {
-                    // Since we are expecting WebSocket requests and this is not - send HTTP 400
-                    listenerContext.Response.StatusCode = 400;
-                    listenerContext.Response.Close();
-                }
-            }
-        }
-
-        private async void ProcessRequest(HttpListenerContext listenerContext)
-        {
-            WebSocketContext webSocketContext = null;
-
-            try
-            {
-                // Accept the WebSocket request
-                webSocketContext = await listenerContext.AcceptWebSocketAsync(subProtocol: null);
-            }
-            catch (Exception ex)
-            {
-                // If any error occurs then send HTTP Status 500
-                listenerContext.Response.StatusCode = 500;
-                listenerContext.Response.Close();
-                Console.WriteLine("Exception : {0}", ex.Message);
-                return;
-            }
-
-            // Accept the WebSocket connect. 
-            WebSocket webSocket = webSocketContext.WebSocket;
-
-            try
-            {
-                Random rand = new Random(1);
-                while (webSocket.State == WebSocketState.Open)
-                {
-                    // As long as the WebSocket connection is open - continue sending the random score updates. 
-                    string scoreUpdate = "Match A" + ":" + rand.Next(1, 50);
-                    Console.WriteLine("Sending Score :" + scoreUpdate);
-                    ArraySegment<byte> outputBuffer = new ArraySegment<byte>(Encoding.UTF8.GetBytes(scoreUpdate));
-                    await webSocket.SendAsync(outputBuffer, WebSocketMessageType.Text, true, CancellationToken.None);
-
-                    // Wait for some, before sending the next update
-                    await Task.Delay(new TimeSpan(0, 0, 3));
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Exception : {0}", ex.Message);
-            }
-
-            finally
-            {
-                if (webSocket != null)
-                {
-                    webSocket.Dispose();
-                }
-            }
-        }
-    }
-    # endregion 
     class Program
     {
-        static string key = "YOUR API KEY";
-        static string secret = "YOUR API SECRET";
+        //static string key = "YOUR API KEY";
+        //static string secret = "YOUR API SECRET";
 
+        static string key = "f9d8ae77-60a7-48e1-8fee-6782d152c28b";
+        static string secret = "34d787a7-4c8e-4c71-8f89-6b96d922471c";
 
         static void Main(string[] args)
         {
@@ -105,7 +27,9 @@ namespace ZaifNET.Tests
             //GetPersonalInfo();
             //            TestActiveOrders();
             //TestCurrencyPairs();
-            TestStreamApi();
+            //            TestStreamApi();
+//            TestDepositHistory();
+            TestWithdrawhistrory();
             Console.ReadLine();
             Console.ReadLine();
         }
@@ -114,8 +38,6 @@ namespace ZaifNET.Tests
 
         static void TestStreamApi()
         {
-
-
             var api = new StreamingApi();
 
             var cs = new CancellationTokenSource();
@@ -126,12 +48,10 @@ namespace ZaifNET.Tests
                     Console.WriteLine(s.LastPrice.Price);
                     stream.WriteLine(s.LastPrice.Price);
                     stream.WriteLine(s.LastPrice.Action);
-                    foreach (var item in s.Trades)
-                    {
-                        stream.WriteLine(item.Date);
-                        stream.WriteLine(item.Price);
-                        stream.WriteLine(item.Amount);
-                    }
+                    /*                    foreach (var item in s.Trades)
+                                        {
+                                            stream.WriteLine(item.Tid);
+                                        }*/
                     stream.WriteLine();
                 }, cs.Token);
 
@@ -173,12 +93,33 @@ namespace ZaifNET.Tests
             //            Console.WriteLine(res.Return.TokenActiveOrders["184"].CurrencyPair);
         }
 
+        static void TestDepositHistory()
+        {
+            var api = new TradeApi(key, secret);
+            var res = api.DepositHistory(new Dictionary<string, string>() { { "currency", "jpy" } }).Result;
+            foreach (var item in res.Return)
+            {
+                Console.WriteLine(item.Key);
+                Console.WriteLine(item.Value.Amount);
+            }
+        }
+
+        static void TestWithdrawhistrory()
+        {
+            var api = new TradeApi(key, secret);
+            var res = api.WithdrawHistory(new Dictionary<string, string>() { { "currency", "jpy" } }).Result;
+            foreach (var item in res.Return)
+            {
+                Console.WriteLine(item.Key);
+                Console.WriteLine(item.Value.Amount);
+            }
+        }
 
         static void TestTradeApi()
         {
             var api = new TradeApi(key, secret);
             var res = api.Getinfo().Result;
-            Console.WriteLine(res.Return.Funds[Currencies.jpy]);
+            Console.WriteLine(res.Return.Funds[CurrenciesEnum.jpy]);
         }
 
         static void GetPersonalInfo()

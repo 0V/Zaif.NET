@@ -6,7 +6,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{2FC08221-3745-4035-AD4C-FF0ED6C50A71}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ZaifNET.Tests</RootNamespace>
+    <RootNamespace>ZaifNet.Tests</RootNamespace>
     <AssemblyName>Zaif.NET.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

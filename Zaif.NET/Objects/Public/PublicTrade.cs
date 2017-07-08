@@ -7,15 +7,8 @@ using System.Threading.Tasks;
 
 namespace ZaifNet
 {
-    public enum TradeType
+    public class PublicTrade
     {
-        bid,
-        ask,
-    }
-
-    public class Trade
-    {
-
         [JsonProperty("date")]
         public long Date { get; set; }
 
@@ -29,7 +22,7 @@ namespace ZaifNet
         public long Tid { get; set; }
 
         [JsonProperty("currency_pair")]
-        public string CurrencyPair { get; set; }
+        public CurrencyPairsEnum CurrencyPair { get; set; }
 
         [JsonProperty("trade_type")]
         public TradeType TradeType { get; set; }        

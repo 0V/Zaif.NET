@@ -44,24 +44,34 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ActiveOrder.cs" />
+    <Compile Include="Objects\Enum\CurrencyPairs.cs" />
+    <Compile Include="Objects\Enum\TradeType.cs" />
+    <Compile Include="Objects\Public\Depth.cs" />
+    <Compile Include="Objects\Public\LastPrice.cs" />
+    <Compile Include="Objects\Public\Ticker.cs" />
+    <Compile Include="Objects\Trade\ActiveOrder.cs" />
     <Compile Include="Objects\Public\CurrencyPair.cs" />
-    <Compile Include="Objects\Public\Trade.cs" />
+    <Compile Include="Objects\Public\PublicTrade.cs" />
     <Compile Include="Objects\Streaming\StreamingLastPrice.cs" />
-    <Compile Include="Order.cs" />
+    <Compile Include="Objects\Trade\CancelOrder.cs" />
+    <Compile Include="Objects\Trade\DepositHistory.cs" />
+    <Compile Include="Objects\Trade\Order.cs" />
     <Compile Include="Objects\Trade\IdInfo.cs" />
     <Compile Include="Objects\Public\Currency.cs" />
     <Compile Include="Objects\Trade\PersonalInfo.cs" />
-    <Compile Include="Objects\Trade\Currencies.cs" />
+    <Compile Include="Objects\Enum\Currencies.cs" />
     <Compile Include="Objects\Trade\Info.cs" />
     <Compile Include="Objects\Trade\History.cs" />
+    <Compile Include="Objects\Trade\Trades.cs" />
+    <Compile Include="Objects\Trade\Withdraw.cs" />
+    <Compile Include="Objects\Trade\WithdrawHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="StreamingData.cs" />
+    <Compile Include="Objects\Streaming\StreamingData.cs" />
     <Compile Include="Src\PublicApi.cs" />
     <Compile Include="Src\GlobalSettings.cs" />
     <Compile Include="Src\StreamingApi.cs" />
     <Compile Include="Src\TradeApi.cs" />
-    <Compile Include="Objects\Trade\Trade.cs" />
+    <Compile Include="Objects\Trade\TradeBase.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

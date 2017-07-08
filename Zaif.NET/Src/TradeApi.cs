@@ -35,46 +35,46 @@ namespace ZaifNet
             ApiSecret = apiSecret;
         }
 
-        public async Task<Trade<Info>> Getinfo()
+        public async Task<TradeBase<Info>> Getinfo()
         {
             var json = await SendPostAsync("get_info");
             Console.WriteLine(json);
-            var result = JsonConvert.DeserializeObject<Trade<Info>>(json);
+            var result = JsonConvert.DeserializeObject<TradeBase<Info>>(json);
             return result;
         }
 
-        public async Task<Trade<Info>> Getinfo2()
+        public async Task<TradeBase<Info>> Getinfo2()
         {
             var json = await SendPostAsync("get_info2");
-            var result = JsonConvert.DeserializeObject<Trade<Info>>(json);
+            var result = JsonConvert.DeserializeObject<TradeBase<Info>>(json);
             return result;
         }
 
 
-        public async Task<Trade<PersonalInfo>> GetPersonalInfo()
+        public async Task<TradeBase<PersonalInfo>> GetPersonalInfo()
         {
             var json = await SendPostAsync("get_personal_info");
-            var result = JsonConvert.DeserializeObject<Trade<PersonalInfo>>(json);
+            var result = JsonConvert.DeserializeObject<TradeBase<PersonalInfo>>(json);
             return result;
         }
 
 
-        public async Task<Trade<IdInfo>> GetIdInfo()
+        public async Task<TradeBase<IdInfo>> GetIdInfo()
         {
             var json = await SendPostAsync("get_id_info");
-            var result = JsonConvert.DeserializeObject<Trade<IdInfo>>(json);
+            var result = JsonConvert.DeserializeObject<TradeBase<IdInfo>>(json);
             return result;
         }
 
-        public async Task<Trade<Dictionary<string, History>>> TradeHistory(Dictionary<string, string> parameters = null)
+        public async Task<TradeBase<Dictionary<string, History>>> TradeHistory(Dictionary<string, string> parameters = null)
         {
             var json = await SendPostAsync("trade_history", parameters);
-            var result = JsonConvert.DeserializeObject<Trade<Dictionary<string, History>>>(json);
+            var result = JsonConvert.DeserializeObject<TradeBase<Dictionary<string, History>>>(json);
             return result;
         }
 
 
-        public async Task<Trade<ActiveOrder>> ActiveOrders(Dictionary<string, string> parameters = null)
+        public async Task<TradeBase<ActiveOrder>> ActiveOrders(Dictionary<string, string> parameters = null)
         {
             if (parameters == null) parameters = new Dictionary<string, string>() { { "is_token_both", "true" } };
             else parameters["is_token_both"] = "true";
@@ -83,9 +83,46 @@ namespace ZaifNet
 
             Console.Write(json);
 
-            var result = JsonConvert.DeserializeObject<Trade<ActiveOrder>>(json);
+            var result = JsonConvert.DeserializeObject<TradeBase<ActiveOrder>>(json);
             return result;
         }
+
+        public async Task<TradeBase<Trade>> Trades(Dictionary<string, string> parameters = null)
+        {
+            var json = await SendPostAsync("trades", parameters);
+            var result = JsonConvert.DeserializeObject<TradeBase<Trade>>(json);
+            return result;
+        }
+
+        public async Task<TradeBase<CancelOrder>> CancelOrder(Dictionary<string, string> parameters = null)
+        {
+            var json = await SendPostAsync("cancel_order", parameters);
+            var result = JsonConvert.DeserializeObject<TradeBase<CancelOrder>>(json);
+            return result;
+        }
+
+        public async Task<TradeBase<Withdraw>> Withdraw(Dictionary<string, string> parameters = null)
+        {
+            var json = await SendPostAsync("withdraw", parameters);
+            var result = JsonConvert.DeserializeObject<TradeBase<Withdraw>>(json);
+            return result;
+        }
+
+        public async Task<TradeBase<Dictionary<string, DepositHistory>>> DepositHistory(Dictionary<string, string> parameters = null)
+        {
+            var json = await SendPostAsync("deposit_history", parameters);
+            var result = JsonConvert.DeserializeObject<TradeBase<Dictionary<string, DepositHistory>>>(json);
+            return result;
+        }
+
+        public async Task<TradeBase<Dictionary<string,WithdrawHistory>>> WithdrawHistory(Dictionary<string, string> parameters = null)
+        {
+            var json = await SendPostAsync("withdraw_history", parameters);
+            var result = JsonConvert.DeserializeObject<TradeBase<Dictionary<string, WithdrawHistory>>>(json);
+            return result;
+        }
+
+
         /// <summary>
         /// Zaif APIを非同期的に呼び出します。
         /// </summary>

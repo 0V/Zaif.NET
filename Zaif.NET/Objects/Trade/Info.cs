@@ -7,10 +7,10 @@ namespace ZaifNet
     public class Info
     {
         [JsonProperty("funds")]
-        public Dictionary<Currencies, double> Funds { get; set; }
+        public Dictionary<CurrenciesEnum, double> Funds { get; set; }
 
         [JsonProperty("deposit")]
-        public Dictionary<Currencies, double> Deposit { get; set; }
+        public Dictionary<CurrenciesEnum, double> Deposit { get; set; }
 
         [JsonProperty("trade_count")]
         public int TradeCount { get; set; }

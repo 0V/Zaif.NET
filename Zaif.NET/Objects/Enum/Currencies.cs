@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ZaifNet
 {
-    public enum Currencies
+    public enum CurrenciesEnum
     {
         btc,
         xem,

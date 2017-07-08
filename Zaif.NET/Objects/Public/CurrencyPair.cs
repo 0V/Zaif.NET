@@ -14,7 +14,7 @@ namespace ZaifNet
         public string Title { get; set; }
 
         [JsonProperty("currency_pair")]
-        public string CurrencyPairValue { get; set; }
+        public CurrencyPairsEnum CurrencyPairValue { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }

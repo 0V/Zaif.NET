@@ -30,6 +30,41 @@ namespace ZaifNet
         /// </summary>
         const int MessageBufferSize = 256;
 
+
+
+        /// <summary>
+        /// Zaif Streaming APIを呼び出します。
+        /// </summary>
+        /// <param name="cp">パラメーター。</param>
+        /// <param name="callback">コールバック。</param>
+        /// <returns>レスポンスとして返されるJSON形式の文字列。</returns>
+        public async Task StartStream(CurrencyPairsEnum cp , Action<StreamingData> callback, CancellationToken token)
+        {
+            double nonce = (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
+            
+            if (Client.State != WebSocketState.Open)
+            {
+                await Client.ConnectAsync(new Uri(path + cp.ToString()), token);
+
+                var tmpStr = "";
+
+                while (Client.State == WebSocketState.Open)
+                {
+                    var buff = new ArraySegment<byte>(new byte[MessageBufferSize]);
+                    var ret = await Client.ReceiveAsync(buff, token);
+                    tmpStr += (new UTF8Encoding()).GetString(buff.Take(ret.Count).ToArray());
+                    var index = tmpStr.IndexOf("}{");
+                    if (index >= 0)
+                    {
+                        var json = tmpStr.Substring(0, index + 1);
+                        tmpStr = tmpStr.Remove(0, index + 1);
+                        var result = JsonConvert.DeserializeObject<StreamingData>(json);
+                        callback(result);
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Zaif Streaming APIを呼び出します。
         /// </summary>
@@ -39,9 +74,6 @@ namespace ZaifNet
         public async Task StartStream(string param, Action<StreamingData> callback, CancellationToken token)
         {
             double nonce = (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
-
-            Console.WriteLine(path + param);
-
 
             if (Client.State != WebSocketState.Open)
             {
@@ -55,11 +87,10 @@ namespace ZaifNet
                     var ret = await Client.ReceiveAsync(buff, token);
                     tmpStr += (new UTF8Encoding()).GetString(buff.Take(ret.Count).ToArray());
                     var index = tmpStr.IndexOf("}{");
-                    Console.WriteLine(index);
-                    if (index > 0)
+                    if (index >= 0)
                     {
                         var json = tmpStr.Substring(0,index + 1);
-                        tmpStr.Remove(0,index + 1);
+                        tmpStr = tmpStr.Remove(0,index + 1);
                         var result = JsonConvert.DeserializeObject<StreamingData>(json);
                         callback(result);
                     }

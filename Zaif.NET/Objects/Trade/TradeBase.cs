@@ -6,7 +6,7 @@ using System.Text;
 
 namespace ZaifNet
 {
-    public class Trade<T>
+    public class TradeBase<T>
     {
         [JsonProperty("success")]
         public int Success { get; set; }

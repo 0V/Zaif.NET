@@ -37,6 +37,62 @@ namespace ZaifNet
             return result;
         }
 
+        public async Task<LastPrice> LastPrice(CurrencyPairsEnum cp)
+        {
+            var json = await SendGetAsync("/last_price/" + cp.ToString());
+            var result = JsonConvert.DeserializeObject<LastPrice>(json);
+            return result;
+        }
+
+        public async Task<LastPrice> LastPrice(string name)
+        {
+            var json = await SendGetAsync("/last_price/" + name);
+            var result = JsonConvert.DeserializeObject<LastPrice>(json);
+            return result;
+        }
+
+        public async Task<Ticker> Ticker(CurrencyPairsEnum cp)
+        {
+            var json = await SendGetAsync("/ticker/" + cp.ToString());
+            var result = JsonConvert.DeserializeObject<Ticker>(json);
+            return result;
+        }
+       
+        public async Task<Ticker> Ticker(string name)
+        {
+            var json = await SendGetAsync("/ticker/" + name);
+            var result = JsonConvert.DeserializeObject<Ticker>(json);
+            return result;
+        }
+
+        public async Task<IEnumerable<PublicTrade>> Trades(CurrencyPairsEnum cp)
+        {
+            var json = await SendGetAsync("/trades/" + cp.ToString());
+            var result = JsonConvert.DeserializeObject<IEnumerable<PublicTrade>>(json);
+            return result;
+        }
+
+        public async Task<IEnumerable<PublicTrade>> Trades(string name)
+        {
+            var json = await SendGetAsync("/Trade/" + name);
+            var result = JsonConvert.DeserializeObject<IEnumerable<PublicTrade>>(json);
+            return result;
+        }
+
+        public async Task<Depth> Depth(CurrencyPairsEnum cp)
+        {
+            var json = await SendGetAsync("/depth/" + cp.ToString());
+            var result = JsonConvert.DeserializeObject<Depth>(json);
+            return result;
+        }
+
+        public async Task<Depth> Depth(string name)
+        {
+            var json = await SendGetAsync("/depth/" + name);
+            var result = JsonConvert.DeserializeObject<Depth>(json);
+            return result;
+        }
+
         /// <summary>
         /// Zaif APIを非同期的に呼び出します。
         /// </summary>

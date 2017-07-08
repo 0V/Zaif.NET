@@ -4,26 +4,15 @@ using Newtonsoft.Json.Linq;
 using System.Linq;
 using System.Collections.Generic;
 
-namespace ZaifNET.Utils
+namespace ZaifNet.Utils
 {
     class Program
     {
         static void Main(string[] args)
         {
-            CodeGenerator.InfoJsonToCode("Code.cs");
+            //            CodeGenerator.InfoJsonToCode("Code.txt");
+            CodeGenerator.CurrencyPairsJsonToCode("currency_paies.txt");
         }
     }
 
-    public class Currencies
-    {
-        [JsonProperty("id")]
-        public int Id { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
-
-        [JsonProperty("token")]
-        public bool Token { get; set; }
-
-    }
 }

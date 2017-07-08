@@ -10,7 +10,7 @@ namespace ZaifNet
     public class Order
     {
         [JsonProperty("currency_pair")]
-        public string CurrencyPair { get; set; }
+        public CurrencyPairsEnum CurrencyPair { get; set; }
 
         [JsonProperty("action")]
         public string Action { get; set; }
@@ -22,6 +22,6 @@ namespace ZaifNet
         public double Price { get; set; }
 
         [JsonProperty("timestamp")]
-        public long TimeStamp { get; set; }
+        public string TimeStamp { get; set; }
     }
 }

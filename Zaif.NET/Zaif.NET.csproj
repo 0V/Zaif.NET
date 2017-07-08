@@ -44,8 +44,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveOrder.cs" />
+    <Compile Include="Order.cs" />
+    <Compile Include="Objects\Trade\IdInfo.cs" />
     <Compile Include="Objects\Public\Currency.cs" />
+    <Compile Include="Objects\Trade\PersonalInfo.cs" />
+    <Compile Include="Objects\Trade\Currencies.cs" />
     <Compile Include="Objects\Trade\Info.cs" />
+    <Compile Include="Objects\Trade\History.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Src\PublicApi.cs" />
     <Compile Include="Src\GlobalSettings.cs" />

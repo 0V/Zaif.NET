@@ -34,8 +34,7 @@ namespace ZaifNet
         /// <summary>
         /// Zaif APIを非同期的に呼び出します。
         /// </summary>
-        /// <param name="endpoint">APIのメソッド名。</param>
-        /// <param name="parameters">APIのパラメータのリスト。</param>
+        /// <param name="endpoint">エンドポイント。</param>
         /// <returns>レスポンスとして返されるJSON形式の文字列。</returns>
         public async Task<string> SendGetAsync(string endpoint)
         {

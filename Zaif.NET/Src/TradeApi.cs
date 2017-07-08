@@ -50,13 +50,42 @@ namespace ZaifNet
             return result;
         }
 
-        public async Task<Trade<Info>> TradeHistory(Dictionary<string,string> parameters)
+
+        public async Task<Trade<PersonalInfo>> GetPersonalInfo()
         {
-            var json = await SendPostAsync("trade_history", parameters);
-            var result = JsonConvert.DeserializeObject<Trade<Info>>(json);
+            var json = await SendPostAsync("get_personal_info");
+            var result = JsonConvert.DeserializeObject<Trade<PersonalInfo>>(json);
             return result;
         }
-        
+
+
+        public async Task<Trade<IdInfo>> GetIdInfo()
+        {
+            var json = await SendPostAsync("get_id_info");
+            var result = JsonConvert.DeserializeObject<Trade<IdInfo>>(json);
+            return result;
+        }
+
+        public async Task<Trade<Dictionary<string, History>>> TradeHistory(Dictionary<string, string> parameters = null)
+        {
+            var json = await SendPostAsync("trade_history", parameters);
+            var result = JsonConvert.DeserializeObject<Trade<Dictionary<string, History>>>(json);
+            return result;
+        }
+
+
+        public async Task<Trade<ActiveOrder>> ActiveOrders(Dictionary<string, string> parameters = null)
+        {
+            if (parameters == null) parameters = new Dictionary<string, string>() { { "is_token_both", "true" } };
+            else parameters["is_token_both"] = "true";
+
+            var json = await SendPostAsync("active_orders", parameters);
+
+            Console.Write(json);
+
+            var result = JsonConvert.DeserializeObject<Trade<ActiveOrder>>(json);
+            return result;
+        }
         /// <summary>
         /// Zaif APIを非同期的に呼び出します。
         /// </summary>

@@ -7,10 +7,10 @@ namespace ZaifNet
     public class Info
     {
         [JsonProperty("funds")]
-        public Balance Funds { get; set; }
+        public Dictionary<Currencies, double> Funds { get; set; }
 
         [JsonProperty("deposit")]
-        public Balance Deposit { get; set; }
+        public Dictionary<Currencies, double> Deposit { get; set; }
 
         [JsonProperty("trade_count")]
         public int TradeCount { get; set; }
@@ -19,20 +19,13 @@ namespace ZaifNet
         public int OpenOrders { get; set; }
 
         [JsonProperty("server_time")]
-        public long ServerTime { get; set; }            
+        public long ServerTime { get; set; }
     }
 
-    public class Balance
-    {
-        [JsonProperty("jpy")]
-        public string Jpy { get; set; }
 
-        [JsonProperty("mona")]
-        public string Mona { get; set; }
-
-        [JsonProperty("btc")]
-        public string Btc { get; set; }
-    }
+    /// <summary>
+    /// APIキーが保持している権限を表します。
+    /// </summary>
     public class Rights
     {
         [JsonProperty("info")]
@@ -48,6 +41,6 @@ namespace ZaifNet
         public bool PersonalInfo { get; set; }
 
         [JsonProperty("id_info")]
-        public bool IdInfo { get; set; }            
+        public bool IdInfo { get; set; }
     }
 }

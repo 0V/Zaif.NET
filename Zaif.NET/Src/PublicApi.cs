@@ -23,14 +23,20 @@ namespace ZaifNet
             Client = new HttpClient();
         }
 
-        public async Task<IEnumerable<Currency>> Currencies(string name)
+        public async Task<IEnumerable<Currency>> Currencies(string name = "all")
         {
             var json = await SendGetAsync("/currencies/" + name);
-            Console.WriteLine(json);
             var result = JsonConvert.DeserializeObject<IEnumerable<Currency>>(json);
             return result;
         }
-        
+
+        public async Task<IEnumerable<CurrencyPair>> CurrencyPairs(string name = "all")
+        {
+            var json = await SendGetAsync("/currency_pairs/" + name);
+            var result = JsonConvert.DeserializeObject<IEnumerable<CurrencyPair>>(json);
+            return result;
+        }
+
         /// <summary>
         /// Zaif APIを非同期的に呼び出します。
         /// </summary>
@@ -43,8 +49,6 @@ namespace ZaifNet
             var res = await Client.GetAsync(path + endpoint);
 
             string text = await res.Content.ReadAsStringAsync();
-
-            Console.WriteLine(path + endpoint);
 
             if (!res.IsSuccessStatusCode) return "";
 

@@ -145,7 +145,7 @@ namespace ZaifNet
 
             Client.DefaultRequestHeaders.Clear();
             Client.DefaultRequestHeaders.Add("key", ApiKey);
-            Client.DefaultRequestHeaders.Add("Sign", sign);
+            Client.DefaultRequestHeaders.Add("sign", sign);
 
             var res = await Client.PostAsync(path, content).ConfigureAwait(false);
 

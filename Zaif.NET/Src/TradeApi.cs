@@ -37,7 +37,7 @@ namespace ZaifNet
 
         public async Task<TradeBase<Info>> Getinfo()
         {
-            var json = await SendPostAsync("get_info");
+            var json = await SendPostAsync("get_info").ConfigureAwait(false);
             Console.WriteLine(json);
             var result = JsonConvert.DeserializeObject<TradeBase<Info>>(json);
             return result;
@@ -45,7 +45,7 @@ namespace ZaifNet
 
         public async Task<TradeBase<Info>> Getinfo2()
         {
-            var json = await SendPostAsync("get_info2");
+            var json = await SendPostAsync("get_info2").ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<TradeBase<Info>>(json);
             return result;
         }
@@ -53,7 +53,7 @@ namespace ZaifNet
 
         public async Task<TradeBase<PersonalInfo>> GetPersonalInfo()
         {
-            var json = await SendPostAsync("get_personal_info");
+            var json = await SendPostAsync("get_personal_info").ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<TradeBase<PersonalInfo>>(json);
             return result;
         }
@@ -61,14 +61,14 @@ namespace ZaifNet
 
         public async Task<TradeBase<IdInfo>> GetIdInfo()
         {
-            var json = await SendPostAsync("get_id_info");
+            var json = await SendPostAsync("get_id_info").ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<TradeBase<IdInfo>>(json);
             return result;
         }
 
         public async Task<TradeBase<Dictionary<string, History>>> TradeHistory(Dictionary<string, string> parameters = null)
         {
-            var json = await SendPostAsync("trade_history", parameters);
+            var json = await SendPostAsync("trade_history", parameters).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<TradeBase<Dictionary<string, History>>>(json);
             return result;
         }
@@ -79,7 +79,7 @@ namespace ZaifNet
             if (parameters == null) parameters = new Dictionary<string, string>() { { "is_token_both", "true" } };
             else parameters["is_token_both"] = "true";
 
-            var json = await SendPostAsync("active_orders", parameters);
+            var json = await SendPostAsync("active_orders", parameters).ConfigureAwait(false);
 
             Console.Write(json);
 
@@ -89,35 +89,35 @@ namespace ZaifNet
 
         public async Task<TradeBase<Trade>> Trades(Dictionary<string, string> parameters = null)
         {
-            var json = await SendPostAsync("trades", parameters);
+            var json = await SendPostAsync("trades", parameters).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<TradeBase<Trade>>(json);
             return result;
         }
 
         public async Task<TradeBase<CancelOrder>> CancelOrder(Dictionary<string, string> parameters = null)
         {
-            var json = await SendPostAsync("cancel_order", parameters);
+            var json = await SendPostAsync("cancel_order", parameters).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<TradeBase<CancelOrder>>(json);
             return result;
         }
 
         public async Task<TradeBase<Withdraw>> Withdraw(Dictionary<string, string> parameters = null)
         {
-            var json = await SendPostAsync("withdraw", parameters);
+            var json = await SendPostAsync("withdraw", parameters).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<TradeBase<Withdraw>>(json);
             return result;
         }
 
         public async Task<TradeBase<Dictionary<string, DepositHistory>>> DepositHistory(Dictionary<string, string> parameters = null)
         {
-            var json = await SendPostAsync("deposit_history", parameters);
+            var json = await SendPostAsync("deposit_history", parameters).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<TradeBase<Dictionary<string, DepositHistory>>>(json);
             return result;
         }
 
         public async Task<TradeBase<Dictionary<string,WithdrawHistory>>> WithdrawHistory(Dictionary<string, string> parameters = null)
         {
-            var json = await SendPostAsync("withdraw_history", parameters);
+            var json = await SendPostAsync("withdraw_history", parameters).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<TradeBase<Dictionary<string, WithdrawHistory>>>(json);
             return result;
         }
@@ -138,7 +138,7 @@ namespace ZaifNet
             parameters.Add("method", method);
 
             var content = new FormUrlEncodedContent(parameters);
-            string message = await content.ReadAsStringAsync();
+            string message = await content.ReadAsStringAsync().ConfigureAwait(false);
 
             var hash = new HMACSHA512(Encoding.UTF8.GetBytes(ApiSecret)).ComputeHash(Encoding.UTF8.GetBytes(message));
             var sign = BitConverter.ToString(hash).ToLower().Replace("-", "");
@@ -147,9 +147,9 @@ namespace ZaifNet
             Client.DefaultRequestHeaders.Add("key", ApiKey);
             Client.DefaultRequestHeaders.Add("Sign", sign);
 
-            var res = await Client.PostAsync(path, content);
+            var res = await Client.PostAsync(path, content).ConfigureAwait(false);
 
-            string text = await res.Content.ReadAsStringAsync();
+            string text = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             if (!res.IsSuccessStatusCode) return "";
 

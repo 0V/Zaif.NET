@@ -25,70 +25,70 @@ namespace ZaifNet
 
         public async Task<IEnumerable<Currency>> Currencies(string name = "all")
         {
-            var json = await SendGetAsync("/currencies/" + name);
+            var json = await SendGetAsync("/currencies/" + name).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<IEnumerable<Currency>>(json);
             return result;
         }
 
         public async Task<IEnumerable<CurrencyPair>> CurrencyPairs(string name = "all")
         {
-            var json = await SendGetAsync("/currency_pairs/" + name);
+            var json = await SendGetAsync("/currency_pairs/" + name).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<IEnumerable<CurrencyPair>>(json);
             return result;
         }
 
         public async Task<LastPrice> LastPrice(CurrencyPairsEnum cp)
         {
-            var json = await SendGetAsync("/last_price/" + cp.ToString());
+            var json = await SendGetAsync("/last_price/" + cp.ToString()).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<LastPrice>(json);
             return result;
         }
 
         public async Task<LastPrice> LastPrice(string name)
         {
-            var json = await SendGetAsync("/last_price/" + name);
+            var json = await SendGetAsync("/last_price/" + name).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<LastPrice>(json);
             return result;
         }
 
         public async Task<Ticker> Ticker(CurrencyPairsEnum cp)
         {
-            var json = await SendGetAsync("/ticker/" + cp.ToString());
+            var json = await SendGetAsync("/ticker/" + cp.ToString()).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<Ticker>(json);
             return result;
         }
        
         public async Task<Ticker> Ticker(string name)
         {
-            var json = await SendGetAsync("/ticker/" + name);
+            var json = await SendGetAsync("/ticker/" + name).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<Ticker>(json);
             return result;
         }
 
         public async Task<IEnumerable<PublicTrade>> Trades(CurrencyPairsEnum cp)
         {
-            var json = await SendGetAsync("/trades/" + cp.ToString());
+            var json = await SendGetAsync("/trades/" + cp.ToString()).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<IEnumerable<PublicTrade>>(json);
             return result;
         }
 
         public async Task<IEnumerable<PublicTrade>> Trades(string name)
         {
-            var json = await SendGetAsync("/Trade/" + name);
+            var json = await SendGetAsync("/Trade/" + name).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<IEnumerable<PublicTrade>>(json);
             return result;
         }
 
         public async Task<Depth> Depth(CurrencyPairsEnum cp)
         {
-            var json = await SendGetAsync("/depth/" + cp.ToString());
+            var json = await SendGetAsync("/depth/" + cp.ToString()).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<Depth>(json);
             return result;
         }
 
         public async Task<Depth> Depth(string name)
         {
-            var json = await SendGetAsync("/depth/" + name);
+            var json = await SendGetAsync("/depth/" + name).ConfigureAwait(false);
             var result = JsonConvert.DeserializeObject<Depth>(json);
             return result;
         }
@@ -102,9 +102,9 @@ namespace ZaifNet
         {
             double nonce = (DateTime.UtcNow - new DateTime(1970, 1, 1)).TotalSeconds;
          
-            var res = await Client.GetAsync(path + endpoint);
+            var res = await Client.GetAsync(path + endpoint).ConfigureAwait(false);
 
-            string text = await res.Content.ReadAsStringAsync();
+            string text = await res.Content.ReadAsStringAsync().ConfigureAwait(false);
 
             if (!res.IsSuccessStatusCode) return "";
 

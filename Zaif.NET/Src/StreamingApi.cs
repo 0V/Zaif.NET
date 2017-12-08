@@ -44,14 +44,14 @@ namespace ZaifNet
             
             if (Client.State != WebSocketState.Open)
             {
-                await Client.ConnectAsync(new Uri(path + cp.ToString()), token);
+                await Client.ConnectAsync(new Uri(path + cp.ToString()), token).ConfigureAwait(false);
 
                 var tmpStr = "";
 
                 while (Client.State == WebSocketState.Open)
                 {
                     var buff = new ArraySegment<byte>(new byte[MessageBufferSize]);
-                    var ret = await Client.ReceiveAsync(buff, token);
+                    var ret = await Client.ReceiveAsync(buff, token).ConfigureAwait(false);
                     tmpStr += (new UTF8Encoding()).GetString(buff.Take(ret.Count).ToArray());
                     var index = tmpStr.IndexOf("}{");
                     if (index >= 0)
@@ -77,14 +77,14 @@ namespace ZaifNet
 
             if (Client.State != WebSocketState.Open)
             {
-                await Client.ConnectAsync(new Uri(path + param), token);
+                await Client.ConnectAsync(new Uri(path + param), token).ConfigureAwait(false);
 
                 var tmpStr = "";
 
                 while (Client.State == WebSocketState.Open)
                 {
                     var buff = new ArraySegment<byte>(new byte[MessageBufferSize]);
-                    var ret = await Client.ReceiveAsync(buff, token);
+                    var ret = await Client.ReceiveAsync(buff, token).ConfigureAwait(false);
                     tmpStr += (new UTF8Encoding()).GetString(buff.Take(ret.Count).ToArray());
                     var index = tmpStr.IndexOf("}{");
                     if (index >= 0)

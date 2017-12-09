@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Groups.cs" />
+    <Compile Include="LastPrices.cs" />
     <Compile Include="Objects\Enum\CurrencyPairs.cs" />
     <Compile Include="Objects\Enum\TradeType.cs" />
     <Compile Include="Objects\Public\Depth.cs" />
@@ -73,7 +75,10 @@
     <Compile Include="Src\TradeApi.cs" />
     <Compile Include="Objects\Trade\TradeBase.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Objects\Future\" />
+    <Folder Include="Objects\Leverage\" />
+  </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

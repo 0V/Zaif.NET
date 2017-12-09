@@ -24,7 +24,5 @@ namespace ZaifNet
         [JsonProperty("timestamp")]
         public string TimeStamp { get; set; }
 
-        [JsonProperty("comment")]
-        public string Comment { get; set; }
     }
 }

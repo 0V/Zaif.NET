@@ -10,9 +10,9 @@ namespace ZaifNet
     public class ActiveOrder
     {
         [JsonProperty("active_orders")]
-        public Dictionary<string, Order> ActiveOrders { get; set; }
+        public Dictionary<string, CommentOrder> ActiveOrders { get; set; }
 
         [JsonProperty("token_active_orders")]
-        public Dictionary<string, Order> TokenActiveOrders { get; set; }
+        public Dictionary<string, CommentOrder> TokenActiveOrders { get; set; }
     }
 }

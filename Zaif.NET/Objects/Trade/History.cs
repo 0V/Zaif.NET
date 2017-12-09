@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ZaifNet
 {
-    public class History : Order
+    public class History : CommentOrder
     {
         [JsonProperty("fee")]
         public double Fee { get; set; }

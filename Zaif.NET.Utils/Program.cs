@@ -11,7 +11,8 @@ namespace ZaifNet.Utils
         static void Main(string[] args)
         {
             //            CodeGenerator.InfoJsonToCode("Code.txt");
-            CodeGenerator.CurrencyPairsJsonToCode("currency_paies.txt");
+            CodeGenerator.CurrencyPairsJsonToCode("currency_pairs.txt");
+            CodeGenerator.InfoJsonToCode("currencies.txt");
         }
     }
 

@@ -73,7 +73,7 @@ Use ``` TradeApi ``` Class.
 This class **requires your API Key and Secret**.    
 
  ``` TradeApi ``` クラスを用います。   
-このAPIを利用する場合はAPIキーが必要です。  
+このAPIを利用する場合はAPIキーとAPIシークレットが必要です。  
 
 ```csharp
 string key = "YOUR API KEY";
@@ -91,7 +91,7 @@ This class **requires your API Key and Secret**.  
 
  ``` LeverageTradeApi ``` クラスを用います。  
  返り値に ``` "_xxx" ``` を含むパラメータはサポートしていません。  
- このAPIを利用する場合はAPIキーが必要です。  
+ このAPIを利用する場合はAPIキーとAPIシークレットが必要です。  
    
 
 ```csharp

@@ -1,15 +1,15 @@
 # Zaif.NET
-Zaif API (v1.1.1) Wrapper Library for C# .NET 
-Zaif API (v1.1.1) の C# ラッパーライブラリです。  
+Zaif API (v1.1.1) Wrapper Library for C# .NET  
+Zaif API (v1.1.1) の C# ラッパーライブラリです。  
 
 [Zaif API Doc](http://techbureau-api-document.readthedocs.io/ja/latest/index.html)
 
 ## API
 * Public API （現物公開 API）
-* Trade API （現物取引 API）
 * Future Public API （先物公開 API）
-* LeverageTrade API （レバレッジ取引 API）
 * Streaming API （ストリーミング API）
+* Trade API （現物取引 API）
+* LeverageTrade API （レバレッジ取引 API）
   
   
 ## Usage
@@ -86,23 +86,26 @@ Console.WriteLine(res.Return.Funds[CurrenciesEnum.jpy]);  // Show your balance (
 ### Leverage Trade API
 
 Use ``` LeverageTradeApi ``` Class.  
-This class **requires your API Key and Secret**.    
+Return values containing ``` "_xxx" ``` are not supported.  
+This class **requires your API Key and Secret**.  
 
- ``` LeverageTradeApi ``` クラスを用います。   
+ ``` LeverageTradeApi ``` クラスを用います。  
+ 返り値に ``` "_xxx" ``` を含むパラメータはサポートしていません。  
  このAPIを利用する場合はAPIキーが必要です。  
+   
 
 ```csharp
 
-    string key = "YOUR API KEY";
-    string secret = "YOUR API SECRET";
-    var api = new LeverageTradeApi(key, secret);
-    var param = new Dictionary<string, string>();
-    param.Add("type", "futures");
-    var res = api.PositionHistory(param).Result;
-    foreach (var item in res.Return)
-    {
-        Console.Write(item.Value.YourAction + " : " +item.Value.Price);  // Show your action and price
-    }
+string key = "YOUR API KEY";
+string secret = "YOUR API SECRET";
+var api = new LeverageTradeApi(key, secret);
+var param = new Dictionary<string, string>();
+param.Add("type", "futures");
+var res = api.PositionHistory(param).Result;
+foreach (var item in res.Return)
+{
+    Console.Write(item.Value.YourAction + " : " +item.Value.Price);  // Show your action and price
+}
 ```
 
 

@@ -19,7 +19,7 @@ namespace ZaifNet
 
         public FuturePublicApi()
         {
-            path = new Uri(settings.BaseApiUrl + settings.PublicApiPath);
+            path = new Uri(settings.BaseApiUrl + settings.FuturePublicApiPath);
             Client = new HttpClient();
         }
 

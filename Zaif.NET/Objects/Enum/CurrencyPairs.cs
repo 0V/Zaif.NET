@@ -8,6 +8,7 @@ namespace ZaifNet
 {
     public enum CurrencyPairsEnum
     {
+        None,
         tsukasavix_btc,
         mizukivix_xem,
         satoayaka_xem,

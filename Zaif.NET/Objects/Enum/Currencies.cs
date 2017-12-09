@@ -8,7 +8,7 @@ namespace ZaifNet
 {
     public enum CurrenciesEnum
     {
-        btc,
+        None, btc,
         xem,
         jpy,
         mona,

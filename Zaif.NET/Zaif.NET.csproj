@@ -44,16 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Objects\Leverage\CancelPosition.cs" />
-    <Compile Include="Objects\Leverage\ChangePosition.cs" />
-    <Compile Include="Objects\Leverage\CreatePosition.cs" />
-    <Compile Include="Objects\Future\Group.cs" />
-    <Compile Include="Objects\Future\FutureLastPrice.cs" />
+    <Compile Include="Objects\LeverageTrade\CancelPosition.cs" />
+    <Compile Include="Objects\LeverageTrade\ChangePosition.cs" />
+    <Compile Include="Objects\LeverageTrade\CreatePosition.cs" />
+    <Compile Include="Objects\FuturePublic\Group.cs" />
+    <Compile Include="Objects\FuturePublic\FutureLastPrice.cs" />
     <Compile Include="Objects\Enum\CurrencyPairs.cs" />
     <Compile Include="Objects\Enum\TradeType.cs" />
-    <Compile Include="Objects\Leverage\ActivePosition.cs" />
-    <Compile Include="Objects\Leverage\PositionHistory.cs" />
-    <Compile Include="Objects\Leverage\GetPosition.cs" />
+    <Compile Include="Objects\LeverageTrade\ActivePosition.cs" />
+    <Compile Include="Objects\LeverageTrade\PositionHistory.cs" />
+    <Compile Include="Objects\LeverageTrade\GetPosition.cs" />
     <Compile Include="Objects\Public\Depth.cs" />
     <Compile Include="Objects\Public\LastPrice.cs" />
     <Compile Include="Objects\Public\Ticker.cs" />
@@ -76,6 +76,8 @@
     <Compile Include="Objects\Trade\WithdrawHistory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Objects\Streaming\StreamingData.cs" />
+    <Compile Include="Src\FuturePublicApi.cs" />
+    <Compile Include="Src\LeverageTradeApi.cs" />
     <Compile Include="Src\PublicApi.cs" />
     <Compile Include="Src\GlobalSettings.cs" />
     <Compile Include="Src\StreamingApi.cs" />

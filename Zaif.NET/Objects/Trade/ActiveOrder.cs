@@ -7,12 +7,18 @@ using System.Threading.Tasks;
 
 namespace ZaifNet
 {
+    public class ActiveOrderChild
+    {
+        [JsonProperty("token_active_orders")]
+        public Dictionary<string, CommentOrder> TokenActiveOrders { get; set; }
+
+        public Dictionary<string, CommentOrder> Orders { get; set; }
+    }
+
+
     public class ActiveOrder
     {
         [JsonProperty("active_orders")]
-        public Dictionary<string, CommentOrder> ActiveOrders { get; set; }
-
-        [JsonProperty("token_active_orders")]
-        public Dictionary<string, CommentOrder> TokenActiveOrders { get; set; }
+        public List<ActiveOrderChild> ActiveOrders { get; set; }
     }
 }

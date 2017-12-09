@@ -50,13 +50,27 @@ namespace ZaifNet.Utils
         public static void CurrencyPairsJsonToCode(string fileName)
         {
             var api = new PublicApi();
-            var res = api.CurrencyPairs("all");
+            var res = api.CurrencyPairs("all").Result;
             //            var ordered = res.Result.OrderBy(c => c.CurrencyPairValue);
             using (var stream = File.AppendText(fileName))
             {
-                foreach (var item in res.Result)
+                foreach (var item in res)
                 {
                     stream.WriteLine("        " + item.CurrencyPairValue + ",");
+                }
+            }
+        }
+
+        public static void CurrenciesJsonToCode(string fileName)
+        {
+            var api = new PublicApi();
+            var res = api.Currencies("all").Result;
+            //            var ordered = res.Result.OrderBy(c => c.CurrencyPairValue);
+            using (var stream = File.AppendText(fileName))
+            {
+                foreach (var item in res)
+                {
+                    stream.WriteLine("        " + item.Name + ",");
                 }
             }
         }

@@ -44,10 +44,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Groups.cs" />
-    <Compile Include="LastPrices.cs" />
+    <Compile Include="Objects\Leverage\CancelPosition.cs" />
+    <Compile Include="Objects\Leverage\ChangePosition.cs" />
+    <Compile Include="Objects\Leverage\CreatePosition.cs" />
+    <Compile Include="Objects\Future\Group.cs" />
+    <Compile Include="Objects\Future\FutureLastPrice.cs" />
     <Compile Include="Objects\Enum\CurrencyPairs.cs" />
     <Compile Include="Objects\Enum\TradeType.cs" />
+    <Compile Include="Objects\Leverage\ActivePosition.cs" />
+    <Compile Include="Objects\Leverage\PositionHistory.cs" />
+    <Compile Include="Objects\Leverage\GetPosition.cs" />
     <Compile Include="Objects\Public\Depth.cs" />
     <Compile Include="Objects\Public\LastPrice.cs" />
     <Compile Include="Objects\Public\Ticker.cs" />
@@ -56,6 +62,7 @@
     <Compile Include="Objects\Public\PublicTrade.cs" />
     <Compile Include="Objects\Streaming\StreamingLastPrice.cs" />
     <Compile Include="Objects\Trade\CancelOrder.cs" />
+    <Compile Include="Objects\Trade\CommentOrder.cs" />
     <Compile Include="Objects\Trade\DepositHistory.cs" />
     <Compile Include="Objects\Trade\Order.cs" />
     <Compile Include="Objects\Trade\IdInfo.cs" />
@@ -75,10 +82,7 @@
     <Compile Include="Src\TradeApi.cs" />
     <Compile Include="Objects\Trade\TradeBase.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Objects\Future\" />
-    <Folder Include="Objects\Leverage\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

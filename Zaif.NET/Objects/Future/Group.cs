@@ -7,7 +7,7 @@ using System.Text;
 
 namespace ZaifNet
 {
-    public class Groups
+    public class Group
     {
         [JsonProperty("id")]
         public int Id { get; set; }
@@ -16,10 +16,10 @@ namespace ZaifNet
         public string CurrencyPair { get; set; }
 
         [JsonProperty("start_timestamp")]
-        public string StartTimestamp { get; set; }
+        public string StartTimeStamp { get; set; }
 
         [JsonProperty("end_timestamp")]
-        public string EndTimestamp { get; set; }
+        public string EndTimeStamp { get; set; }
 
         [JsonProperty("use_swap")]
         public bool UseSwap { get; set; }

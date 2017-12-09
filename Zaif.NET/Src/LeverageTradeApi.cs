@@ -9,7 +9,7 @@ using System.Web;
 
 namespace ZaifNet
 {
-    public class LeverageApi
+    public class LeverageTradeApi
     {
     }
 }

@@ -1,10 +1,14 @@
 # Zaif.NET
-Zaif API Wrapper Library for C# .NET  
-Zaif API の C# ラッパーライブラリです。  
+Zaif API (v1.1.1) Wrapper Library for C# .NET 
+Zaif API (v1.1.1) の C# ラッパーライブラリです。  
+
+[Zaif API Doc](http://techbureau-api-document.readthedocs.io/ja/latest/index.html)
 
 ## API
-* Public API （公開 API）
-* Trade API （取引 API）
+* Public API （現物公開 API）
+* Trade API （現物取引 API）
+* Future Public API （先物公開 API）
+* LeverageTrade API （レバレッジ取引 API）
 * Streaming API （ストリーミング API）
   
   
@@ -31,6 +35,20 @@ foreach (var item in res.Result)
 }
 ```
 
+### Future Public API
+
+Use ``` FuturePublicApi ``` Class.    
+ ``` FuturePublicApi ``` クラスを用います。
+
+```csharp
+var api = new FuturePublicApi();
+var res = api.Groups("all").Result;
+foreach (var item in res.Result)
+{
+    Console.WriteLine(item.Id + " : " + item.CurrencyPair); // Show all "id" and "currency_pair"
+}
+
+```
 ### Streaming API
 
 Use ``` StreamingApi ``` Class.    
@@ -52,10 +70,10 @@ cs.Cancel(); // -> Stop Stream
 ### Trade API
 
 Use ``` TradeApi ``` Class.  
-This class ** requires your API Key and Secret **.    
+This class **requires your API Key and Secret**.    
 
  ``` TradeApi ``` クラスを用います。   
- 取引APIを利用する場合はAPIキーが必要です。  
+このAPIを利用する場合はAPIキーが必要です。  
 
 ```csharp
 string key = "YOUR API KEY";
@@ -63,6 +81,28 @@ string secret = "YOUR API SECRET";
 var api = new TradeApi(key, secret);
 var res = api.Getinfo().Result;
 Console.WriteLine(res.Return.Funds[CurrenciesEnum.jpy]);  // Show your balance (JPY)
+```
+
+### Leverage Trade API
+
+Use ``` LeverageTradeApi ``` Class.  
+This class **requires your API Key and Secret**.    
+
+ ``` LeverageTradeApi ``` クラスを用います。   
+ このAPIを利用する場合はAPIキーが必要です。  
+
+```csharp
+
+    string key = "YOUR API KEY";
+    string secret = "YOUR API SECRET";
+    var api = new LeverageTradeApi(key, secret);
+    var param = new Dictionary<string, string>();
+    param.Add("type", "futures");
+    var res = api.PositionHistory(param).Result;
+    foreach (var item in res.Return)
+    {
+        Console.Write(item.Value.YourAction + " : " +item.Value.Price);  // Show your action and price
+    }
 ```
 
 

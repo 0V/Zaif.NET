@@ -28,7 +28,7 @@ Use ``` PublicApi ``` Class.
  
 ```csharp
 var api = new PublicApi();
-var res = api.Currencies("all").Result;
+var res = api.Currencies("all");
 foreach (var item in res.Result)
 {
     Console.WriteLine(item.CurrencyPairValue); // Show all "currency_pair"
@@ -42,7 +42,7 @@ Use ``` FuturePublicApi ``` Class.
 
 ```csharp
 var api = new FuturePublicApi();
-var res = api.Groups("all").Result;
+var res = api.Groups("all");
 foreach (var item in res.Result)
 {
     Console.WriteLine(item.Id + " : " + item.CurrencyPair); // Show all "id" and "currency_pair"

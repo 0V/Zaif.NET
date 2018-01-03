@@ -14,11 +14,8 @@ namespace ZaifNET.Tests
 {
     class Program
     {
-        //static string key = "YOUR API KEY";
-        //static string secret = "YOUR API SECRET";
-
-        static string key = "f9d8ae77-60a7-48e1-8fee-6782d152c28b";
-        static string secret = "34d787a7-4c8e-4c71-8f89-6b96d922471c";
+        static string key = "YOUR API KEY";
+        static string secret = "YOUR API SECRET";
 
         static void Main(string[] args)
         {
